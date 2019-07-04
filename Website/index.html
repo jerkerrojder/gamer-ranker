@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  <script src="db.js"></script>
+</head>
+<body>
+<!-- As a link -->
+    
+    <!--sidenav-->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h3 href="#">Games</h3>
+        <ul id="games">
+
+        </ul>
+    </div>
+    <!--Button for opening sieview-->
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; OPEN</span>
+
+    <script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
+    <!--end of sidenav thing-->
+
+
+
+    <ul class="list-group" id="names">
+        <li class="list-group-item">Hampus Hauffman
+
+        </li>
+        <li class="list-group-item">JERK
+
+        </li>
+        <li class="list-group-item">Adam Meyer
+
+        </li>
+        <li class="list-group-item">Stephenie
+
+        </li>
+        <li class="list-group-item">Roxy
+
+        </li>
+    </ul>
+
+</body>
+</html>
