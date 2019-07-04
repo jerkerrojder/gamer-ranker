@@ -57,38 +57,79 @@
 
     <!-- Button trigger modal -->
     <button type="button" id="addPlayerBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
+        Add Player
     </button>
   
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
-
+            <!--
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Player</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
+            -->
             <div class="modal-body">
                 <form id="playerForm">
-                    <h2>Name:
-                    <input type="text" id="nameInput" name="firstname" value="Mickey">
+                    <h2>
+                    <input type="text" id="nameInput" name="firstname" value="Enter Name">
                     <br>
                     </h2>
                 </form> 
             </div>
 
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="addPlayer()">Add Player</button>
-            </div>
+            
+            <!--
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            -->
+            <button type="button" class="btn btn-primary" id="addPlayerBtnModal" onclick="addPlayer()" data-dismiss="modal">Add Player</button>
+            
         </div>
         </div>
     </div>
     <!--END OF MODAL-->
+
+    <button type="button" id="addMatchBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+            Add Match
+    </button>
+
+     <!-- Modal Add Game -->
+     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Player</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                -->
+                <div class="modal-body">
+                    <form id="playerForm">
+                        <h2>:
+                        <br>
+                        <input type="text" id="winnerInput" name="winner" value="Winner">
+                        <br>
+                        <input type="text" id="loserInput" name="loser" value="Loser">
+                        <br>
+                        </h2>
+                    </form> 
+                </div>
+    
+                
+                <!--
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                -->
+                <button type="button" class="btn btn-primary" id="addPlayerBtnModal" onclick="addMatch()" data-dismiss="modal">Add Match</button>
+                
+            </div>
+            </div>
+        </div>
+        <!--END OF MODAL-->
 
 </body>
 </html>

@@ -80,9 +80,17 @@ function changeDrop(r){
     
 }
 
+//HERE IS WHERE WE GON SEND THE STUFF
 //looks for the name and sends it
 function addPlayer(){
     var form = document.querySelector("#nameInput").value;
     console.log(form);
+}
+
+function addMatch(){
+    var winner = document.querySelector("#winnerInput").value;
+    var loser = document.querySelector("#loserInput").value;
+    console.log("Winner: " + winner);
+    console.log("loser: " + loser);
 }
  

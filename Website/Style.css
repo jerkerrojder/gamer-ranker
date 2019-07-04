@@ -7,6 +7,12 @@ body{
   margin-left: 40px;
 }
 
+#addMatchBtn{
+  margin-left: 40px;
+  background-color: #F46023;
+  border: #F46023;
+}
+
 #stuff{
   color: whitesmoke;
   margin-left: 55px;
@@ -18,6 +24,61 @@ body > span{
 
 #navButton{
   margin-left: 40px;
+}
+
+#addPlayerBtnModal{
+  /*margin-left: 40%;*/
+  margin-bottom: 40px;
+  background-color: #F46023;
+  border: none;
+  border-radius: 39px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 13px;
+}
+
+#exampleModal > div > div{
+text-align: center;
+padding-top: 30px;
+background-color: #333333;
+}
+
+#exampleModal2 > div > div{
+  text-align: center;
+  padding-top: 30px;
+  background-color: #333333;
+  }
+
+#nameInput{
+  text-align: center;
+  background-color: #333333;
+  color: #EDEDED;
+  border-bottom: solid #959595 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#winnerInput{
+  text-align: center;
+  background-color: #333333;
+  color: #EDEDED;
+  border-bottom: solid #959595 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#loserInput{
+  margin-top: 100px;
+  margin-bottom: 60px;
+  text-align: center;
+  background-color: #333333;
+  color: #EDEDED;
+  border-bottom: solid #959595 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
 }
 
 .list-group-item{
