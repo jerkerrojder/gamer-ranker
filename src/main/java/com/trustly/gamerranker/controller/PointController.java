@@ -19,7 +19,7 @@ public class PointController {
 	}
 
 	@GetMapping("points")
-	public List<Points> getPointsForGameId(@RequestParam("gameId") Long gameId) {
+	public List<Points> getPointsForGameId(@RequestParam("gameid") Long gameId) {
 		return pointsRepo.getPointsForGameId(gameId);
 	}
 }

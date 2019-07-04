@@ -20,6 +20,6 @@ public class UserRepo {
 
 	public Long getUserIdFromName(String name) {
 		String query = "select id from users where username=?";
-		return jdbcTemplate.queryForObject(query, Long.class);
+		return jdbcTemplate.queryForObject(query, Long.class, name);
 	}
 }

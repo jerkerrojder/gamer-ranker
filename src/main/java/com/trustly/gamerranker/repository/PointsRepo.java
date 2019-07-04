@@ -24,16 +24,20 @@ public class PointsRepo {
 
 	public Points getPointsForGameIdAndUserId(Long gameId, Long userId) {
 		String query = "select * from points where gamesid=? and usersid=?";
-		return (Points) jdbcTemplate.queryForObject(query, new PointsMapper(), gameId, userId);
+		List<Points> pointsList = jdbcTemplate.query(query, new PointsMapper(), gameId, userId);
+		if (pointsList.isEmpty()) {
+			return null;
+		}
+		return pointsList.get(0);
 	}
 
 	public void addPoints(Long gameId, Long userId, Double playerPoints) {
-		String query = "insert into points (gamesid,userid,player_points) values (?,?,?)";
+		String query = "insert into points (gamesid,usersid,player_points) values (?,?,?)";
 		jdbcTemplate.update(query, gameId, userId, playerPoints);
 	}
 
 	public void updatePoints(Long gameId, Long userId, Double playerPoints) {
-		String query = "update points set player_points =?  where gamesid=? and userid=?";
+		String query = "update points set player_points =?  where gamesid=? and usersid=?";
 		jdbcTemplate.update(query, playerPoints, gameId, userId);
 	}
 }
