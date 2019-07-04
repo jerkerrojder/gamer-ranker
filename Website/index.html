@@ -17,10 +17,17 @@
     <!--sidenav-->
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h3  href="#">Player</h3>
+        <button type="button" id="addPlayerBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Add Player
+        </button>
         <h3  href="#">Games</h3>
         <ul id="games">
 
         </ul>
+        <button type="button" id="addMatchBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+                Add Match
+        </button>
     </div>
     <!--Button for opening sieview-->
     <span id="navButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; GAMES</span>
@@ -36,29 +43,29 @@
     </script>
     <!--end of sidenav thing-->
 
-    <h4 id="stuff">Rank            Name               score</h4>
+    <h4 id="stuff">
+        
+        <div class="row">
+            <p class="col-xs-3">Rank</p>
+            <p class="col-xs-5" style="margin-left:8px;">Name</p>
+            <p class="col-xs-4" style="margin-left:-8px;">Score</p>
+        </div>
+    
+    </h4>
+    
     <ol class="list-group" id="names">
-        <li class="list-group-item">Hampus Hauffman
-
+        <li class="list-group-item" class="row">
+                <p class="col-xs-3">1</p>
+                <p class="col-xs-5">Hampus</p>
+                <p class="col-xs-4">1500</p>
         </li>
-        <li class="list-group-item">JERK
 
-        </li>
-        <li class="list-group-item">Adam Meyer
-
-        </li>
-        <li class="list-group-item">Stephenie
-
-        </li>
-        <li class="list-group-item">Roxy
 
         </li>
     </ol>
 
     <!-- Button trigger modal -->
-    <button type="button" id="addPlayerBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-        Add Player
-    </button>
+    
   
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,9 +99,7 @@
     </div>
     <!--END OF MODAL-->
 
-    <button type="button" id="addMatchBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
-            Add Match
-    </button>
+    
 
      <!-- Modal Add Game -->
      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -4,11 +4,11 @@ body{
 }
 
 #addPlayerBtn{
-  margin-left: 40px;
+  margin-left: 50px;
 }
 
 #addMatchBtn{
-  margin-left: 40px;
+  margin-left: 50px;
   background-color: #F46023;
   border: #F46023;
 }
@@ -16,6 +16,8 @@ body{
 #stuff{
   color: whitesmoke;
   margin-left: 55px;
+  margin-right: 62px;
+
 }
 
 body > span{
@@ -23,8 +25,10 @@ body > span{
 }
 
 #navButton{
+  padding-top:100px !important;
   margin-left: 40px;
 }
+
 
 #addPlayerBtnModal{
   /*margin-left: 40%;*/
@@ -85,7 +89,7 @@ background-color: #333333;
   background-color: #232323;
   color: whitesmoke;
   border: none;
-
+  height: 40px;
   margin-left: 40px;
   margin-right: 40px;
 
@@ -111,6 +115,13 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  
+}
+
+#games{
+  white-space: nowrap;
+  list-style-type: none;
+  margin-left: -20px;
 }
 
 .sidenav a {

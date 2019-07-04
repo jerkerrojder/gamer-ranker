@@ -1,3 +1,5 @@
+var games = null;
+
 //MOCK OBJECTS
 resp2 = { games: ["Mario Cart Galaxy 2",
 "Fifa 69",
@@ -11,9 +13,9 @@ resp = { games: [
 
 rankings = {
 rankings: 
-[{gameId: "1", playerId: "1", name: "Adam", rank: 1500},
-{gameId: "1", playerId: "2", name: "Steph", rank: 1400},
-{gameId: "1", playerId: "3", name: "Hampus", rank: 1300}]
+[{gameId: "-1", playerId: "1", name: "Adam", rank: 1500},
+{gameId: "-1", playerId: "2", name: "Steph", rank: 1400},
+{gameId: "-1", playerId: "3", name: "Hampus", rank: 1300}]
 };
 
 //currently not used
@@ -30,8 +32,17 @@ function req(){
 }
 //this waits for document to load and then we set the dropdowns
 document.addEventListener('DOMContentLoaded', function() {
-    //THIS IS WHERE WE NEED TO QUERY DATABASE FOR GAMES
-    changeDrop(resp);
+    const URL = "http://10.46.1.251:8080/game";
+    //console.log(`${URL}`);
+    $.get(URL, (data, status) => {
+        //console.log(`${data} and status is ${status}`);
+
+        //data.forEach(e => console.log(e.gameName));
+        
+        changeDrop(data);
+        games = data;
+        //console.log(games[0].id);
+    })
 }, false);
 
 //FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
@@ -39,25 +50,62 @@ function fetchNames(game){
     //e is the person which has all the attributes
     //some jquery cause im lazy like dat, haters gon h8
     $("#names").empty();
+    var i;
+    for(i = 0; i < games.length; i++){
+        if(games.gameName == game){
+            
+        }
+    }
+    //console.log("FETCHONE:" + game)
     //THIS IS WHERE WE NEED TO QUERY DATABASE FOR NAMES FOR SAID GAME
-    console.log(game);
+    var i = 1;
     rankings.rankings.forEach(e => {
-        dispNames(e);
+        
+        dispNames(e,i);
+        i = i + 1;
     });
     document.getElementById("mySidenav").style.width = "0";
+    
 }
 
 
 //diplays the names, person should contain all the info about said person in correct format 
-function dispNames(person){
+function dispNames(person,i){
     
     var ul = document.querySelector("#names");
-    
+    /*
+    <li class="list-group-item" class="row">
+                <p class="col-xs-3">1</p>
+                <p class="col-xs-5">Hampus</p>
+                <p class="col-xs-4">1500</p>
+    </li>
+    */
     var node = document.createElement("LI");
-    node.setAttribute("class", "list-group-item");
-    var textNode = document.createTextNode(person.name + "       " + person.rank);
-    node.appendChild(textNode);
+    node.setAttribute("class", "list-group-item row ");
+
+    var pNode = document.createElement("P");
+    pNode.setAttribute("class", "col-xs-3");
+    var textNode = document.createTextNode(i);
+    pNode.appendChild(textNode);
+    node.appendChild(pNode);
+
+    var pNode = document.createElement("P");
+    pNode.setAttribute("class", "col-xs-5");
+    var textNode = document.createTextNode(person.name);
+    pNode.appendChild(textNode);
+    node.appendChild(pNode);
+
+    var pNode = document.createElement("P");
+    pNode.setAttribute("class", "col-xs-4");
+    var textNode = document.createTextNode(person.rank);
+    pNode.appendChild(textNode);
+    node.appendChild(pNode);
+
+    //console.log(person);
+
     ul.appendChild(node);
+
+    
 
 }
 
@@ -65,18 +113,19 @@ function dispNames(person){
 function changeDrop(r){
     var ul = document.querySelector("#games");
 
-    r.games.forEach(elem => {
+    r.forEach(elem => {
         //this needs to be a loop making LI elements
         var node = document.createElement("LI");
         var aNode = document.createElement("A");
-        aNode.setAttribute("href", "#"+elem.name);
-        aNode.setAttribute("onclick","fetchNames(\"" + elem.name + "\")");
-        var textNode = document.createTextNode(elem.name);
+        aNode.setAttribute("href", "#"+elem.gameName);
+        aNode.setAttribute("onclick","fetchNames(\"" + elem.gameName + "\")");
+        var textNode = document.createTextNode(elem.gameName);
         aNode.appendChild(textNode);
         node.appendChild(aNode);
         ul.appendChild(node);
     });
 
+    
     
 }
 
@@ -84,7 +133,15 @@ function changeDrop(r){
 //looks for the name and sends it
 function addPlayer(){
     var form = document.querySelector("#nameInput").value;
-    console.log(form);
+    //console.log(form);
+    var url = "http://10.46.1.251:8080/user";
+    var params = {
+        username:form
+    }
+    $.post(url,params, (data, status) => {
+        console.log("Status: " + status + " Data: " + data);
+    })
+
 }
 
 function addMatch(){
@@ -92,5 +149,14 @@ function addMatch(){
     var loser = document.querySelector("#loserInput").value;
     console.log("Winner: " + winner);
     console.log("loser: " + loser);
+
+    var url = "http://10.46.1.251:8080/match";
+    var params = {
+        username:form
+    }
+    $.post(url,params, (data, status) => {
+        console.log("Status: " + status + " Data: " + data);
+    })
+
 }
  
