@@ -1,14 +1,16 @@
 create table if not exists games
 (
     id       identity not null,
-    gamename varchar(50) unique default null,
+    gamename varchar(50)  default null,
+    unique key gamename (gamename),
     primary key (id)
 );
 
 create table if not exists users
 (
     id       identity    not null,
-    username varchar(50) unique not null,
+    username varchar(50) not null,
+    unique key username (username),
     primary key (id)
 );
 
