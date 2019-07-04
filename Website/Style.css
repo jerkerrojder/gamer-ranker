@@ -1,10 +1,42 @@
-#nav{
-    background-color: aquamarine;
+body{
+  background-color: #232323;
+  font-family: "Helvetica neue", sans-serif;
+}
+
+#addPlayerBtn{
+  margin-left: 40px;
+}
+
+#stuff{
+  color: whitesmoke;
+  margin-left: 55px;
+}
+
+body > span{
+  color:whitesmoke;
+}
+
+#navButton{
+  margin-left: 40px;
+}
+
+.list-group-item{
+  background-color: #232323;
+  color: whitesmoke;
+  border: none;
+
+  margin-left: 40px;
+  margin-right: 40px;
+
+}
+
+.list-group-item:nth-child(odd) { 
+  background: #333333; 
 }
 
 /*for the sideview thing dont ask*/
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Helvetica neue", sans-serif;
 }
 
 .sidenav {
@@ -24,7 +56,7 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 16px;
-  color: #818181;
+  color: #a5a5a5;
   display: block;
   transition: 0.3s;
 }
@@ -32,7 +64,7 @@ body {
 .sidenav h3 {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    color: #818181;
+    color: whitesmoke;
     display: block;
     transition: 0.3s;
   }

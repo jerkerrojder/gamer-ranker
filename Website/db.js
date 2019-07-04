@@ -44,7 +44,9 @@ function fetchNames(game){
     rankings.rankings.forEach(e => {
         dispNames(e);
     });
+    document.getElementById("mySidenav").style.width = "0";
 }
+
 
 //diplays the names, person should contain all the info about said person in correct format 
 function dispNames(person){
@@ -76,5 +78,11 @@ function changeDrop(r){
     });
 
     
+}
+
+//looks for the name and sends it
+function addPlayer(){
+    var form = document.querySelector("#nameInput").value;
+    console.log(form);
 }
  
