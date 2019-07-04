@@ -6,13 +6,13 @@ public class Player {
   private final String game;
   private double rating;
 
-  Player(String name, String game) {
+  public Player(String name, String game) {
     this.name = name;
     this.game = game;
     rating = 1000.0;
   }
 
-  Player(String name, String game, double rating) {
+  public Player(String name, String game, double rating) {
     this.name = name;
     this.game = game;
     this.rating = rating;
@@ -26,19 +26,19 @@ public class Player {
     return game;
   }
 
-  double getRating() {
+  public double getRating() {
     return rating;
   }
 
-  void setRating(double rating) {
+  public void setRating(double rating) {
     this.rating = rating;
   }
 
-  void increaseRating(double increase) {
+  public void increaseRating(double increase) {
     rating += increase;
   }
 
-  void decreaseRating(double decrease) {
+  public void decreaseRating(double decrease) {
     rating -= decrease;
   }
 
