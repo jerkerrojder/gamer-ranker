@@ -39,7 +39,6 @@ public class MatchController {
 		match.setScoreUser2(scoreUser2);
 		matchRepo.saveMatch(match);
 
-		pointsService.updatePointsForUser(gameId, user1Id, scoreUser1 * 400.0);
-		pointsService.updatePointsForUser(gameId, user2Id, scoreUser2 * 400.0);
+		pointsService.updatePoints(gameId, user1Id, user2Id);
 	}
 }
