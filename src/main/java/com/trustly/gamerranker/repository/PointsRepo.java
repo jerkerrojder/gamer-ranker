@@ -26,7 +26,11 @@ public class PointsRepo {
 		String query = "select * from points where gamesid=? and usersid=?";
 		List<Points> pointsList = jdbcTemplate.query(query, new PointsMapper(), gameId, userId);
 		if (pointsList.isEmpty()) {
-			return null;
+			Points points=new Points();
+			points.setGameId(gameId);
+			points.setUserId(userId);
+			points.setPoints(0.0);
+			return points;
 		}
 		return pointsList.get(0);
 	}
