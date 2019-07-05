@@ -1,4 +1,5 @@
 var games = null;
+const ur = "http://10.46.1.101:8080/"
 
 //MOCK OBJECTS
 resp2 = { games: ["Mario Cart Galaxy 2",
@@ -21,7 +22,7 @@ rankings:
 //currently not used
 function req(){
     const Http = new XMLHttpRequest();
-    const url='https://jsonplaceholder.typicode.com/posts';
+    const url=ur+'posts';
     Http.open("GET", url);
     Http.send();
 
@@ -32,7 +33,7 @@ function req(){
 }
 //this waits for document to load and then we set the dropdowns
 document.addEventListener('DOMContentLoaded', function() {
-    const URL = "http://10.46.1.251:8080/game";
+    const URL = ur+"game";
     //console.log(`${URL}`);
     $.get(URL, (data, status) => {
         //console.log(`${data} and status is ${status}`);
@@ -45,24 +46,42 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 }, false);
 
-//FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
-function fetchNames(game){
-    //e is the person which has all the attributes
-    //some jquery cause im lazy like dat, haters gon h8
-    $("#names").empty();
+function getGameId(name){
+    console.log("TRYING TO GET ID FROM NAME");
+
     var i;
     for(i = 0; i < games.length; i++){
-        if(games.gameName == game){
-            
+        if(games[i].gameName == name){
+            return i;
         }
     }
-    //console.log("FETCHONE:" + game)
+}
+
+function getNameFromId(id){
+    console.log("TRYING TO GET NAME FROM ID");
+    for(i = 0; i < games.length; i++){
+        if(games.id == id){
+            return games[i].gameName;
+        }
+    }
+}
+
+//FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
+function fetchNames(game){
+    $("#names").empty();
+
     //THIS IS WHERE WE NEED TO QUERY DATABASE FOR NAMES FOR SAID GAME
-    var i = 1;
+    
+    const URL = ur+"points";
+    //console.log(`${URL}`);
+    $.get(URL, (data, status) => {
+        console.log("THIS IS THE PLAYERS" + data);
+    })
+
+    var i = 0;
     rankings.rankings.forEach(e => {
-        
         dispNames(e,i);
-        i = i + 1;
+        i = i + 1; //ät bajs
     });
     document.getElementById("mySidenav").style.width = "0";
     
@@ -134,7 +153,7 @@ function changeDrop(r){
 function addPlayer(){
     var form = document.querySelector("#nameInput").value;
     //console.log(form);
-    var url = "http://10.46.1.251:8080/user";
+    var url = ur+"/user";
     var params = {
         username:form
     }
@@ -150,12 +169,24 @@ function addMatch(){
     console.log("Winner: " + winner);
     console.log("loser: " + loser);
 
-    var url = "http://10.46.1.251:8080/match";
+    var url = ur+"match";
+    /*                       @RequestParam("gameid") Long gameId,
+  1                          @RequestParam("user1name") String user1Name,
+  2                          @RequestParam("user2name") String user2Name,
+  3                          @RequestParam("scoreuser1") Integer scoreUser1,
+  4                          @RequestParam("scoreuser2") Integer scoreUser2)
+    */
+
     var params = {
-        username:form
+        gameid: 1,
+        user1name: winner,
+        user2name: loser,
+        scoreuser1: 1,
+        scoreuser2: -1
     }
     $.post(url,params, (data, status) => {
         console.log("Status: " + status + " Data: " + data);
+        
     })
 
 }
