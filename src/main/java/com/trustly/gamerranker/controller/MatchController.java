@@ -28,7 +28,7 @@ public class MatchController {
 	                     @RequestParam("user1name") String user1Name,
 	                     @RequestParam("user2name") String user2Name,
 	                     @RequestParam("scoreuser1") Integer scoreUser1,
-	                     @RequestParam("scoreUser2") Integer scoreUser2) {
+	                     @RequestParam("scoreuser2") Integer scoreUser2) {
 		Match match = new Match();
 		match.setGameId(gameId);
 		Long user1Id = userRepo.getUserIdFromName(user1Name);

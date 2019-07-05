@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public class PointsRepo {
+
+	public static final int STARTING_POINTS = 1000;
 	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
@@ -27,9 +29,9 @@ public class PointsRepo {
 		return (Points) jdbcTemplate.queryForObject(query, new PointsMapper(), gameId, userId);
 	}
 
-	public void addPoints(Long gameId, Long userId, Double playerPoints) {
+	public void addPoints(Long userId) {
 		String query = "insert into points (gamesid,userid,player_points) values (?,?,?)";
-		jdbcTemplate.update(query, gameId, userId, playerPoints);
+		jdbcTemplate.update(query, 1, userId, STARTING_POINTS);
 	}
 
 	public void updatePoints(Long gameId, Long userId, Double playerPoints) {

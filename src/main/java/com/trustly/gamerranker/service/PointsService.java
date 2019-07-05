@@ -28,12 +28,9 @@ public class PointsService {
 
   private void updatePointsForUser(Long gameId, Long userId, Double deltaPoints) {
     Points points = pointsRepo.getPointsForGameIdAndUserId(gameId, userId);
-    if (points == null) {
-      pointsRepo.addPoints(gameId, userId, STARTING_POINTS + deltaPoints);
-    } else {
-      Double calculatedPoint = deltaPoints + points.getPoints();
-      pointsRepo.updatePoints(gameId, userId, calculatedPoint);
-    }
+
+    Double calculatedPoint = deltaPoints + points.getPoints();
+    pointsRepo.updatePoints(gameId, userId, calculatedPoint);
   }
 
   static Double calculateDelta(Points winnerPoints, Points loserPoints) {
