@@ -1,4 +1,5 @@
 var games = null;
+var currentGameId = 1;
 const ur = "http://10.46.1.101:8080/"
 
 //MOCK OBJECTS
@@ -42,17 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         changeDrop(data);
         games = data;
+        console.log("Games: " + games[0].gameName);
         //console.log(games[0].id);
     })
 }, false);
 
 function getGameId(name){
     console.log("TRYING TO GET ID FROM NAME");
-
     var i;
     for(i = 0; i < games.length; i++){
         if(games[i].gameName == name){
-            return i;
+            return games[i].id;
         }
     }
 }
@@ -68,21 +69,31 @@ function getNameFromId(id){
 
 //FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
 function fetchNames(game){
+    console.log("FetchNames game name: "+game);
     $("#names").empty();
-
+    currentGameId = getGameId(game);
     //THIS IS WHERE WE NEED TO QUERY DATABASE FOR NAMES FOR SAID GAME
-    
+    console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
     const URL = ur+"points";
+    var params = {
+        gameId: 1 // ****************** HARD CODED ************************
+    }
     //console.log(`${URL}`);
-    $.get(URL, (data, status) => {
-        console.log("THIS IS THE PLAYERS" + data);
+    $.get(URL, params, (data, status) => {
+        console.log("THIS IS THE PLAYERS" + data + "status: " + status);
+        var j = 1;
+        data.forEach(e => {
+            console.log(e);
+            dispNames(e,j);
+        })
     })
-
-    var i = 0;
+    /*
+    var i = 1;
     rankings.rankings.forEach(e => {
         dispNames(e,i);
-        i = i + 1; //ät bajs
+        i = i + 1; //ät
     });
+    */
     document.getElementById("mySidenav").style.width = "0";
     
 }
@@ -153,9 +164,10 @@ function changeDrop(r){
 function addPlayer(){
     var form = document.querySelector("#nameInput").value;
     //console.log(form);
-    var url = ur+"/user";
+    var url = ur+"user";
     var params = {
-        username:form
+        gameId: 1, // ****************** HARD CODED ************************
+        username: form
     }
     $.post(url,params, (data, status) => {
         console.log("Status: " + status + " Data: " + data);
