@@ -20,31 +20,15 @@ rankings:
 {gameId: "-1", playerId: "3", name: "Hampus", rank: 1300}]
 };
 
-//currently not used
-function req(){
-    const Http = new XMLHttpRequest();
-    const url=ur+'posts';
-    Http.open("GET", url);
-    Http.send();
 
-    Http.onreadystatechange = (e) => {
-    console.log(Http.responseText)
-    }
-
-}
-//this waits for document to load and then we set the dropdowns
+//On Document load load all games
 document.addEventListener('DOMContentLoaded', function() {
     const URL = ur+"game";
-    //console.log(`${URL}`);
-    $.get(URL, (data, status) => {
-        //console.log(`${data} and status is ${status}`);
 
-        //data.forEach(e => console.log(e.gameName));
-        
+    $.get(URL, (data, status) => {
         changeDrop(data);
         games = data;
-        console.log("Games: " + games[0].gameName);
-        //console.log(games[0].id);
+        //console.log("Games: " + games[0].gameName);
     })
 }, false);
 
@@ -76,40 +60,44 @@ function fetchNames(game){
     console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
     const URL = ur+"points";
     var params = {
-        gameId: 1 // ****************** HARD CODED ************************
+        gameid: 1 // ****************** HARD CODED ************************
     }
-    //console.log(`${URL}`);
+
     $.get(URL, params, (data, status) => {
         console.log("THIS IS THE PLAYERS" + data + "status: " + status);
         var j = 1;
         data.forEach(e => {
             console.log(e);
             dispNames(e,j);
+            j = j +1;
         })
     })
-    /*
-    var i = 1;
-    rankings.rankings.forEach(e => {
-        dispNames(e,i);
-        i = i + 1; //ät
-    });
-    */
     document.getElementById("mySidenav").style.width = "0";
+    $("#gameTitle").html(game);
     
 }
 
 
 //diplays the names, person should contain all the info about said person in correct format 
 function dispNames(person,i){
-    
+    //gets username from name id
+    var URL = ur+"getusername";
+    var params = {
+        userid: person.userId
+    }
+    var username;
+    $.ajax({
+        async: false,
+        type: 'GET',
+        url: URL,
+        data: params,
+        success: function(data) {
+            console.log(data);
+            username = data;
+        }
+    });
+    //end of getting name from nameid
     var ul = document.querySelector("#names");
-    /*
-    <li class="list-group-item" class="row">
-                <p class="col-xs-3">1</p>
-                <p class="col-xs-5">Hampus</p>
-                <p class="col-xs-4">1500</p>
-    </li>
-    */
     var node = document.createElement("LI");
     node.setAttribute("class", "list-group-item row ");
 
@@ -121,13 +109,14 @@ function dispNames(person,i){
 
     var pNode = document.createElement("P");
     pNode.setAttribute("class", "col-xs-5");
-    var textNode = document.createTextNode(person.name);
-    pNode.appendChild(textNode);
+    var nameNode = document.createTextNode(username);
+
+    pNode.appendChild(nameNode);
     node.appendChild(pNode);
 
     var pNode = document.createElement("P");
     pNode.setAttribute("class", "col-xs-4");
-    var textNode = document.createTextNode(person.rank);
+    var textNode = document.createTextNode(Math.floor(person.points));
     pNode.appendChild(textNode);
     node.appendChild(pNode);
 
@@ -142,7 +131,6 @@ function dispNames(person,i){
 //CHANGES THE GAMES DISPLAYED BY SIMEMENU
 function changeDrop(r){
     var ul = document.querySelector("#games");
-
     r.forEach(elem => {
         //this needs to be a loop making LI elements
         var node = document.createElement("LI");
@@ -182,12 +170,6 @@ function addMatch(){
     console.log("loser: " + loser);
 
     var url = ur+"match";
-    /*                       @RequestParam("gameid") Long gameId,
-  1                          @RequestParam("user1name") String user1Name,
-  2                          @RequestParam("user2name") String user2Name,
-  3                          @RequestParam("scoreuser1") Integer scoreUser1,
-  4                          @RequestParam("scoreuser2") Integer scoreUser2)
-    */
 
     var params = {
         gameid: 1,

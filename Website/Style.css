@@ -1,6 +1,11 @@
 body{
   background-color: #232323;
   font-family: "Helvetica neue", sans-serif;
+  padding-top: 30px;
+}
+
+#navButton{
+  margin-top: 40px;
 }
 
 #addPlayerBtn{
@@ -25,8 +30,8 @@ body > span{
 }
 
 #navButton{
-  padding-top:100px !important;
   margin-left: 40px;
+  margin-top: 100px;
 }
 
 
