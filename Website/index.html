@@ -21,7 +21,8 @@
         <button type="button" id="addPlayerBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                 Add Player
         </button>
-        <h3  href="#">Games</h3>
+        <h3  href="#">Games</h3> 
+        
         <ul id="games">
 
         </ul>
@@ -31,7 +32,7 @@
     </div>
     <!--Button for opening sieview-->
     <span id="navButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <span id="gameTitle">GAMES</span></span>
-
+    <button type="button" id="addMatchBtn2" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">Add Match</button>
     <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -82,7 +83,7 @@
             <div class="modal-body">
                 <form id="playerForm">
                     <h2>
-                    <input type="text" id="nameInput" name="firstname" value="Enter Name">
+                    <input type="text" onClick="this.select();" id="nameInput" name="firstname" value="Enter Name">
                     <br>
                     </h2>
                 </form> 
@@ -117,9 +118,9 @@
                     <form id="playerForm">
                         <h2>:
                         <br>
-                        <input type="text" id="winnerInput" name="winner" value="Winner">
+                        <input type="text" onClick="this.select();" id="winnerInput" name="winner" value="Winner">
                         <br>
-                        <input type="text" id="loserInput" name="loser" value="Loser">
+                        <input type="text" onClick="this.select();" id="loserInput" name="loser" value="Loser">
                         <br>
                         </h2>
                     </form> 

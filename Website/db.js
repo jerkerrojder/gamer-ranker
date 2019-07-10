@@ -1,6 +1,6 @@
 var games = null;
 var currentGameId = 1;
-const ur = "http://10.46.1.101:8080/"
+const ur = "http://10.46.1.0:8080/"
 
 //MOCK OBJECTS
 resp2 = { games: ["Mario Cart Galaxy 2",
@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const URL = ur+"game";
 
     $.get(URL, (data, status) => {
+        console.log("Games: " + data);
         changeDrop(data);
         games = data;
-        //console.log("Games: " + games[0].gameName);
     })
 }, false);
 
@@ -60,7 +60,7 @@ function fetchNames(game){
     console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
     const URL = ur+"points";
     var params = {
-        gameid: 1 // ****************** HARD CODED ************************
+        gameid: currentGameId // ****************** HARD CODED ************************
     }
 
     $.get(URL, params, (data, status) => {
@@ -154,7 +154,7 @@ function addPlayer(){
     //console.log(form);
     var url = ur+"user";
     var params = {
-        gameId: 1, // ****************** HARD CODED ************************
+        gameId: currentGameId, // ****************** HARD CODED ************************
         username: form
     }
     $.post(url,params, (data, status) => {
@@ -170,9 +170,9 @@ function addMatch(){
     console.log("loser: " + loser);
 
     var url = ur+"match";
-
+    console.log("Adding match id:" + currentGameId);
     var params = {
-        gameid: 1,
+        gameid: currentGameId, //****************************HARSCODED */
         user1name: winner,
         user2name: loser,
         scoreuser1: 1,
