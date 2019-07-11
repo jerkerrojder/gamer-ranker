@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Games: " + data);
         changeDrop(data);
         games = data;
+        fetchNames(data[0].gameName);
     })
+
+    
 }, false);
 
 function getGameId(name){
@@ -40,12 +43,14 @@ function getGameId(name){
             return games[i].id;
         }
     }
+
 }
 
 function getNameFromId(id){
-    console.log("TRYING TO GET NAME FROM ID");
-    for(i = 0; i < games.length; i++){
-        if(games.id == id){
+    console.log("TRYING TO GET NAME FROM ID:" + games.length);
+    for(i = 0; i <= games.length; i++){
+        if(games[i].id == id){
+            console.log(games[i].gameName);
             return games[i].gameName;
         }
     }
@@ -74,6 +79,8 @@ function fetchNames(game){
     })
     document.getElementById("mySidenav").style.width = "0";
     $("#gameTitle").html(game);
+
+    console.log(document.querySelector("#names"));
     
 }
 
@@ -182,6 +189,8 @@ function addMatch(){
         console.log("Status: " + status + " Data: " + data);
         
     })
+    console.log(currentGameId);
+    fetchNames(getNameFromId(currentGameId));
 
 }
  
