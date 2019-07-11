@@ -8,6 +8,10 @@ body{
 margin-bottom: 40px;
 }
 
+#modalTitle{
+  color: #fafafa;
+}
+
 #addPlayerBtn{
   margin-left: 50px;
 }

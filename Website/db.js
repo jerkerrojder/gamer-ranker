@@ -58,11 +58,11 @@ function getNameFromId(id){
 
 //FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
 function fetchNames(game){
-    console.log("FetchNames game name: "+game);
+    //console.log("FetchNames game name: "+game);
     $("#names").empty();
     currentGameId = getGameId(game);
     //THIS IS WHERE WE NEED TO QUERY DATABASE FOR NAMES FOR SAID GAME
-    console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
+    //console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
     const URL = ur+"points";
     var params = {
         gameid: currentGameId // ****************** HARD CODED ************************
@@ -81,7 +81,7 @@ function fetchNames(game){
     $("#gameTitle").html(game);
 
     console.log(document.querySelector("#names"));
-    
+    $("#modalTitle").html(game);
 }
 
 
@@ -153,6 +153,8 @@ function changeDrop(r){
     
     
 }
+
+
 
 //HERE IS WHERE WE GON SEND THE STUFF
 //looks for the name and sends it
