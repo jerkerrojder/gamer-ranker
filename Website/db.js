@@ -1,6 +1,6 @@
 var games = null;
 var currentGameId = 1;
-const ur = "http://10.46.1.0:8080/"
+const ur = "http://127.0.0.1:5000/"
 
 //MOCK OBJECTS
 resp2 = { games: ["Mario Cart Galaxy 2",
@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const URL = ur+"game";
 
     $.get(URL, (data, status) => {
-        console.log("Games: " + data);
+        console.log(data);
         changeDrop(data);
         games = data;
-        fetchNames(data[0].gameName);
+        //fetchNames(data[0].gameName);
     })
 
     
@@ -73,6 +73,9 @@ function fetchNames(game){
         var j = 1;
         data.forEach(e => {
             console.log(e);
+            data.sort((a,b) => {
+                return b.points - a.points;
+            })
             dispNames(e,j);
             j = j +1;
         })
@@ -142,9 +145,9 @@ function changeDrop(r){
         //this needs to be a loop making LI elements
         var node = document.createElement("LI");
         var aNode = document.createElement("A");
-        aNode.setAttribute("href", "#"+elem.gameName);
-        aNode.setAttribute("onclick","fetchNames(\"" + elem.gameName + "\")");
-        var textNode = document.createTextNode(elem.gameName);
+        aNode.setAttribute("href", "#"+elem);
+        aNode.setAttribute("onclick","fetchNames(\"" + elem + "\")");
+        var textNode = document.createTextNode(elem);
         aNode.appendChild(textNode);
         node.appendChild(aNode);
         ul.appendChild(node);
