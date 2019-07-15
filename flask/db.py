@@ -8,15 +8,28 @@ def getData(req):
     cur = conn.cursor()
     
     cur.execute(req)
-
-    v = cur.fetchall()
     
+    v = None
+
+    print(cur.description)
+    if(cur.description != None):
+        v = cur.fetchall()
+
+    #make changes persistant with other
+    conn.commit()
+
     cur.close()
     conn.close()
     return v
 
+def addPoints(points,nameId,gameId):
+   return None
+
 def getPlayers():
     return getData("select * from users, points, games where users.id = points.id and games.gameid = points.gameid;")
+
+def addPlayer(name):
+    return getData("insert into users (name) values ('"+name+"');")
 
 def getGames():
     return getData("select * from games;")
@@ -24,6 +37,8 @@ def getGames():
 def postGame(name):
     print("POSTGAME")
     return getData("insert into games (gamename) values ('"+name+"');")
+
+
 
 def pr(i):
     print(i)

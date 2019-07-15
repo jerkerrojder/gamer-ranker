@@ -32,11 +32,9 @@ def getGamesTest():
 
 @app.route("/addplayer", methods=['POST'])
 def addPlayer():
-    print(request.get_json())
-   # r = db.postGame()
-    #print(r)
-    #return jsonify(r)
-    return getGamesTest()
+    #print(request.form['username'])
+    r = db.addPlayer(request.form['username'])
+    print(r)
+    return jsonify(r)
 
-
-
+app.run(host= '0.0.0.0') 
