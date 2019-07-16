@@ -1,24 +1,8 @@
 var games = null;
 var currentGameId = 1;
-const ur = "http://127.0.0.1:5000/"
+var currentGame = null;
 
-//MOCK OBJECTS
-resp2 = { games: ["Mario Cart Galaxy 2",
-"Fifa 69",
-"Foosball"]};
-
-resp = { games: [
-{id: "1", name: "Mario Cart Galaxy 2"},
-{id: "2", name:"Fifa 69"},
-{id: "3", name:"Foosball"}]};
-
-
-rankings = {
-rankings: 
-[{gameId: "-1", playerId: "1", name: "Adam", rank: 1500},
-{gameId: "-1", playerId: "2", name: "Steph", rank: 1400},
-{gameId: "-1", playerId: "3", name: "Hampus", rank: 1300}]
-};
+const ur = "http://10.46.0.147:5000/"
 
 
 //On Document load load all games
@@ -58,54 +42,34 @@ function getNameFromId(id){
 
 //FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
 function fetchNames(game){
-    //console.log("FetchNames game name: "+game);
     $("#names").empty();
-    currentGameId = getGameId(game);
-    //THIS IS WHERE WE NEED TO QUERY DATABASE FOR NAMES FOR SAID GAME
-    //console.log("GETTING THE ID: " + getGameId(game) + ". Right now its hardcoded as one so if ID: was 1 then good, Also  Current GameId is: " + currentGameId);
+    console.log(game[0]);
+    
     const URL = ur+"points";
     var params = {
-        gameid: currentGameId // ****************** HARD CODED ************************
+        gameId: game[0]
     }
 
-    $.get(URL, params, (data, status) => {
-        console.log("THIS IS THE PLAYERS" + data + "status: " + status);
+    $.post(URL, params, (data, status) => {
         var j = 1;
+        console.log("DATA FROM POINTS:");
+        console.log(data);
         data.forEach(e => {
-            console.log(e);
-            data.sort((a,b) => {
-                return b.points - a.points;
-            })
             dispNames(e,j);
             j = j +1;
         })
     })
     document.getElementById("mySidenav").style.width = "0";
-    $("#gameTitle").html(game);
+    $("#gameTitle").html(game[1]);
 
     console.log(document.querySelector("#names"));
-    $("#modalTitle").html(game);
+    $("#modalTitle").html(game[1]);
 }
 
 
 //diplays the names, person should contain all the info about said person in correct format 
 function dispNames(person,i){
-    //gets username from name id
-    var URL = ur+"getusername";
-    var params = {
-        userid: person.userId
-    }
-    var username;
-    $.ajax({
-        async: false,
-        type: 'GET',
-        url: URL,
-        data: params,
-        success: function(data) {
-            console.log(data);
-            username = data;
-        }
-    });
+
     //end of getting name from nameid
     var ul = document.querySelector("#names");
     var node = document.createElement("LI");
@@ -119,14 +83,14 @@ function dispNames(person,i){
 
     var pNode = document.createElement("P");
     pNode.setAttribute("class", "col-xs-5");
-    var nameNode = document.createTextNode(username);
+    var nameNode = document.createTextNode(person[1]);
 
     pNode.appendChild(nameNode);
     node.appendChild(pNode);
 
     var pNode = document.createElement("P");
     pNode.setAttribute("class", "col-xs-4");
-    var textNode = document.createTextNode(Math.floor(person.points));
+    var textNode = document.createTextNode(Math.floor(person[4]));
     pNode.appendChild(textNode);
     node.appendChild(pNode);
 
@@ -145,9 +109,9 @@ function changeDrop(r){
         //this needs to be a loop making LI elements
         var node = document.createElement("LI");
         var aNode = document.createElement("A");
-        aNode.setAttribute("href", "#"+elem);
-        aNode.setAttribute("onclick","fetchNames(\"" + elem + "\")");
-        var textNode = document.createTextNode(elem);
+        aNode.setAttribute("href", "#"+elem[1]);
+        aNode.setAttribute("onclick","fetchNames([" + elem[0] + ",\"" + elem[1] + "\"])");
+        var textNode = document.createTextNode(elem[1]);
         aNode.appendChild(textNode);
         node.appendChild(aNode);
         ul.appendChild(node);
@@ -163,10 +127,9 @@ function changeDrop(r){
 //looks for the name and sends it
 function addPlayer(){
     var form = document.querySelector("#nameInput").value;
-    //console.log(form);
-    var url = ur+"user";
+    console.log(form);
+    var url = ur+"addplayer";
     var params = {
-        gameId: currentGameId, // ****************** HARD CODED ************************
         username: form
     }
     $.post(url,params, (data, status) => {
