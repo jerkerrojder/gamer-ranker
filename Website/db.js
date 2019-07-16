@@ -55,7 +55,10 @@ function fetchNames(game){
         var j = 1;
         console.log("DATA FROM POINTS:");
         console.log(data);
-        data.forEach(e => {
+        data.sort(function (a, b) {
+            return b[4] - a[4];
+          });
+            data.forEach(e => {
             dispNames(e,j);
             j = j +1;
         })
