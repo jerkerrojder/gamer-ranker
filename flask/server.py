@@ -15,6 +15,13 @@ def getGames():
     print(r)
     return jsonify(r)
 
+@app.route("/points", methods=['POST'])
+def getPoints():
+    print(request.form['gameId'])
+    r = db.getPoints(request.form['gameId'])
+    print(r)
+    return jsonify(r)
+
 @app.route("/players")
 def getPlayers():
     r = db.getPlayers()
@@ -29,6 +36,7 @@ def getGamesTest():
                     {"id": "3", "gameName":"Foosball"}
             ] 
     return jsonify(games)
+
 
 @app.route("/addplayer", methods=['POST'])
 def addPlayer():

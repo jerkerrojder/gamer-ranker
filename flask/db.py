@@ -22,8 +22,17 @@ def getData(req):
     conn.close()
     return v
 
+def updatePoints(points, nameId, gameId):
+    return getData("insert into points (points, id, gameid, gamesplayed) values ("+points+", "+nameId+", "+gameId+", 1) on conflict on constraint points_un do update set points="+points+" where points.id="+nameId+" and points.gameid="+gameId+";")
+
+def addDefPoints(nameId,gameId):
+    return getData("insert into points (points, id, gameid, gamesplayed) values (default, "+nameId+", "+gameId+", 0);")
+
 def addPoints(points,nameId,gameId):
    return None
+
+def getPoints(gameId):
+    return getData("select points.id, users.name, games.gameid , games.gamename, points.points from users, points, games where users.id = points.id and points.gameid = games.gameid and games.gameid = "+gameId+";")
 
 def getPlayers():
     return getData("select * from users, points, games where users.id = points.id and games.gameid = points.gameid;")
