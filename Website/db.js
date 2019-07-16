@@ -1,6 +1,7 @@
 var games = null;
 var currentGameId = 1;
 var currentGame = null;
+var allUsers = null;
 
 const ur = "http://10.46.0.147:5000/"
 
@@ -160,5 +161,13 @@ function addMatch(){
     console.log(currentGameId);
     fetchNames(getNameFromId(currentGameId));
 
+}
+
+function getAllUsers(){
+    //DET SKA ANVändas datalists för att autocompleata.
+    var URL = ur+"players"
+    $.get(URL, (data, status) => {
+        console.log(data);
+    })
 }
  

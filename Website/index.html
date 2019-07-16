@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="db.js"></script>
+
 </head>
 <body>
 <!-- As a link -->
@@ -26,13 +27,13 @@
         <ul id="games">
 
         </ul>
-        <button type="button" id="addMatchBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+        <button type="button" id="addMatchBtn" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2" onclick="getAllUsers()">
                 Add Match
         </button>
     </div>
     <!--Button for opening sieview-->
     <span id="navButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <span id="gameTitle">GAMES</span></span>
-    <button type="button" id="addMatchBtn2" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">Add Match</button>
+    <button type="button" id="addMatchBtn2" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2" onclick="getAllUsers()">Add Match</button>
     <script>
     function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -109,10 +110,10 @@
                 <div class="modal-body">
                     <h2 id="modalTitle">Title</h2>
 
-                    <form id="playerForm">
+                    <form id="playerForm" autocomplete="off">
                         <h2>:
                         <br>
-                        <input type="text" onClick="this.select();" id="winnerInput" name="winner" value="Winner">
+                        <input type="text"  onClick="this.select();" id="winnerInput" name="winner" value="Winner">
                         <br>
                         <input type="text" onClick="this.select();" id="loserInput" name="loser" value="Loser">
                         <br>
