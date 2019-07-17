@@ -31,8 +31,11 @@ def addDefPoints(nameId,gameId):
 def addPoints(points,nameId,gameId):
    return None
 
-def getPoints(gameId):
+def getPoints(gameId): # Fetching all points for a specific game
     return getData("select points.id, users.name, games.gameid , games.gamename, points.points from users, points, games where users.id = points.id and points.gameid = games.gameid and games.gameid = "+gameId+";")
+
+def getPoints(userId): # Fetch elo points for a specific user
+    return getData("select points from points where id = "+userId+";")
 
 def getPlayers():
     return getData("select * from users;")
