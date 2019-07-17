@@ -35,7 +35,7 @@ def getPoints(gameId):
     return getData("select points.id, users.name, games.gameid , games.gamename, points.points from users, points, games where users.id = points.id and points.gameid = games.gameid and games.gameid = "+gameId+";")
 
 def getPlayers():
-    return getData("select * from users, points, games where users.id = points.id and games.gameid = points.gameid;")
+    return getData("select * from users;")
 
 def addPlayer(name):
     return getData("insert into users (name) values ('"+name+"');")

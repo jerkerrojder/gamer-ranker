@@ -1,6 +1,7 @@
 var games = null;
 var currentGameId = 1;
 var currentGame = null;
+var allUsers = null;
 
 const ur = "http://10.46.0.147:5000/"
 
@@ -54,7 +55,10 @@ function fetchNames(game){
         var j = 1;
         console.log("DATA FROM POINTS:");
         console.log(data);
-        data.forEach(e => {
+        data.sort(function (a, b) {
+            return b[4] - a[4];
+          });
+            data.forEach(e => {
             dispNames(e,j);
             j = j +1;
         })
@@ -160,5 +164,13 @@ function addMatch(){
     console.log(currentGameId);
     fetchNames(getNameFromId(currentGameId));
 
+}
+
+function getAllUsers(){
+    //DET SKA ANVändas datalists för att autocompleata.
+    var URL = ur+"players"
+    $.get(URL, (data, status) => {
+        console.log(data);
+    })
 }
  
