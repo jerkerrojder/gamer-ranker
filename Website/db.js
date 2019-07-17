@@ -55,11 +55,13 @@ function fetchNames(game){
         var j = 1;
         console.log("DATA FROM POINTS:");
         console.log(data);
+        var inp;
         data.sort(function (a, b) {
             return b[4] - a[4];
           });
             data.forEach(e => {
-            dispNames(e,j);
+            inp = makeEmoji(j,game[1]);
+            dispNames(e,inp);
             j = j +1;
         })
     })
@@ -170,7 +172,40 @@ function getAllUsers(){
     //DET SKA ANVändas datalists för att autocompleata.
     var URL = ur+"players"
     $.get(URL, (data, status) => {
-        console.log(data);
+        var ul = document.querySelector("#brows");    
+        data.forEach(e => {
+            var pNode = document.createElement("OPTION");
+            var textNode = document.createTextNode(e[0]);
+            pNode.appendChild(textNode);
+            ul.appendChild(pNode);
+        })
     })
 }
  
+
+function makeEmoji(int, game){
+    
+    if(int > 3){
+        return int;
+    }
+
+    if(int == 1){
+        if(game == "Fifa 19"){
+            return "⚽";
+        }
+        return "🏆";
+    }
+    
+    if(int == 2){
+        if(game == "Fifa 19"){
+            return "🥈";
+        }
+        return "💯";
+    }
+    if(int == 3){
+        if(game == "Fifa 19"){
+            return "🥉";
+        }
+        return "🅱️";
+    }
+}
