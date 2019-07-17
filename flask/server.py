@@ -1,5 +1,5 @@
 from flask import request
-import db
+import db, elo
 import json
 from flask import Flask
 from flask import jsonify
@@ -44,5 +44,13 @@ def addPlayer():
     r = db.addPlayer(request.form['username'])
     print(r)
     return jsonify(r)
+
+@app.route("/match", methods=['POST'])
+def addMatch():
+    req = request.form
+    print("winner: " + req['winner'])
+    print("loser: " + req['loser'])
+    print("gameid: " + req['gameid'])
+    elo.eval_match(req['winner'], req['loser'], req['gameid'])
 
 app.run(host= '0.0.0.0') 
