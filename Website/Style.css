@@ -6,6 +6,8 @@ body{
 
 #navButton{
 margin-bottom: 40px;
+margin-left: 40px;
+
 }
 
 #modalTitle{
@@ -45,12 +47,19 @@ body > span{
   color:whitesmoke;
 }
 
-#navButton{
-  margin-left: 40px;
-}
-
 
 #addPlayerBtnModal{
+  /*margin-left: 40%;*/
+  margin-bottom: 40px;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 39px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 13px;
+}
+
+#addMatchBtnModal{
   /*margin-left: 40%;*/
   margin-bottom: 40px;
   background-color: #F46023;
@@ -73,6 +82,18 @@ background-color: #333333;
   background-color: #333333;
   }
 
+#exampleModal3 > div > div{
+  text-align: center;
+  background-color: #333333;
+  color: whitesmoke;
+}
+
+#exampleModal3 > div > div > button{
+  background-color: #5cb85c;
+  margin-bottom: 20px;
+}
+
+
 #nameInput{
   text-align: center;
   background-color: #333333;
@@ -91,6 +112,12 @@ background-color: #333333;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
+
+  
+}
+
+#winnerInput::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 #loserInput{
@@ -103,6 +130,10 @@ background-color: #333333;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
+}
+
+#loserInput::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 .list-group-item{
@@ -172,5 +203,10 @@ body {
   font-size: 36px;
   margin-left: 50px;
 }
+
+#addMatchBtn2{
+  border-radius:100px;
+}
+
 
 /*end of  side view thing it was all copied*/

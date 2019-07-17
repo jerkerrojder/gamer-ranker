@@ -86,12 +86,27 @@
             <!--
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             -->
-            <button type="button" class="btn btn-primary" id="addPlayerBtnModal" onclick="addPlayer()" data-dismiss="modal">Add Player</button>
+            <button type="button" class="btn btn-primary" id="addPlayerBtnModal" onclick="addPlayer()" data-dismiss="modal" data-toggle="modal" data-target="#exampleModal3">Add Player</button>
             
         </div>
         </div>
     </div>
     <!--END OF MODAL-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                   <h3>Your name was successfully added to the list of users. 
+                       Register a match with your name to see your score
+                   </h3>
+                </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        <!--END OF MODAL-->
 
     
 
@@ -109,14 +124,17 @@
                 -->
                 <div class="modal-body">
                     <h2 id="modalTitle">Title</h2>
-
+                    
                     <form id="playerForm" autocomplete="off">
                         <h2>:
                         <br>
-                        <input type="text"  onClick="this.select();" id="winnerInput" name="winner" value="Winner">
+                        <input list="brows" onClick="this.select();" id="winnerInput" name="winner" value="Winner" onfocus="this.value=''"/>
                         <br>
-                        <input type="text" onClick="this.select();" id="loserInput" name="loser" value="Loser">
+                        <input list="brows" onClick="this.select();" id="loserInput" name="loser" value="Loser" onfocus="this.value=''"/>
                         <br>
+                        <datalist id="brows">
+                            <!--<option value="Hampus">-->
+                        </datalist>
                         </h2>
                     </form> 
                 </div>
@@ -125,7 +143,7 @@
                 <!--
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 -->
-                <button type="button" class="btn btn-primary" id="addPlayerBtnModal" onclick="addMatch()" data-dismiss="modal">Add Match</button>
+                <button type="button" class="btn btn-primary" id="addMatchBtnModal" onclick="addMatch()" data-dismiss="modal">Add Match</button>
                 
             </div>
             </div>
