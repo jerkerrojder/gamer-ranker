@@ -41,7 +41,7 @@ def getPlyrPoints(userId, gameId): # Fetch elo points for a specific user
     tuple = getData("select points from points where id = "+userId+" and gameid = "+gameId+";")
     return tuple[0][0]
 
-def getPlayers():
+def getPlayers(): # Get the users.
     return getData("select * from users;")
 
 def addPlayer(name):

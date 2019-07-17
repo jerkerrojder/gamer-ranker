@@ -154,10 +154,8 @@ function addMatch(){
     console.log("Adding match id:" + currentGameId);
     var params = {
         gameid: currentGameId, //****************************HARSCODED */
-        user1name: winner,
-        user2name: loser,
-        scoreuser1: 1,
-        scoreuser2: -1
+        winner: winner,
+        loser: loser,
     }
     $.post(url,params, (data, status) => {
         console.log("Status: " + status + " Data: " + data);
