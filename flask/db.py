@@ -41,7 +41,7 @@ def getPlyrPoints(userId, gameId): # Fetch elo points for a specific user
     tpl = getData("select points from points where id = "+userId+" and gameid = "+gameId+";")
     print("*******\n    "+str(tpl)+"\n*******")
     #Om ingen finns med i points  så blir det [], om den förstafinns i points blir det [(1021,)] lägg märke till kommat  
-    return tpl[0][0]
+    return None if tpl==[] else tpl[0][0]
 
 def getPlayers(): # Get the users.
     return getData("select * from users;")
