@@ -1,5 +1,4 @@
 var games = null;
-var currentGameId = 1;
 var currentGame = null;
 var allUsers = null;
 
@@ -44,8 +43,8 @@ function getNameFromId(id){
 //FETCHES THE NAMES FOR PLAYES OF A CERTAIN GAME FROM DB
 function fetchNames(game){
     $("#names").empty();
-    console.log(game[0]);
-    
+    window.currentGame = game;
+    console.log(window.currentGame[0]);
     const URL = ur+"points";
     var params = {
         gameId: game[0]
@@ -149,20 +148,18 @@ function addMatch(){
     var loser = document.querySelector("#loserInput").value;
     console.log("Winner: " + winner);
     console.log("loser: " + loser);
-
+    console.log(window.currentGame);
     var url = ur+"match";
-    console.log("Adding match id:" + currentGameId);
     var params = {
-        gameid: currentGameId, //****************************HARSCODED */
+        gameid: window.currentGame[0], 
         winner: winner,
         loser: loser,
     }
     $.post(url,params, (data, status) => {
         console.log("Status: " + status + " Data: " + data);
-        
+        fetchNames(window.currentGame);
     })
-    console.log(currentGameId);
-    fetchNames(getNameFromId(currentGameId));
+    //console.log(currentGameId);
 
 }
 
@@ -170,7 +167,8 @@ function getAllUsers(){
     //DET SKA ANVändas datalists för att autocompleata.
     var URL = ur+"players"
     $.get(URL, (data, status) => {
-        var ul = document.querySelector("#brows");    
+        var ul = document.querySelector("#brows"); 
+        $("#brows").empty();   
         data.forEach(e => {
             var pNode = document.createElement("OPTION");
             var textNode = document.createTextNode(e[0]);

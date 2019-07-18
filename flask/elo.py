@@ -14,15 +14,16 @@ def calc_new(w_elo, l_elo):
 
     return (new_win, new_lsr)
 
-def eval_match(winner, loser, game):
-    win_elo = getPlyrPoints(winner, game)
+def eval_match(winner, loser, game): #takes winnerId LoserID and gameID
+    win_elo = getPlyrPoints(str(winner), str(game))
     print(str(win_elo))
-    lsr_elo = getPlyrPoints(loser, game)
+    lsr_elo = getPlyrPoints(str(loser), str(game))
     print(str(lsr_elo))
 
 
     new_points = calc_new(win_elo, lsr_elo)
     print("winner new points: " + str(new_points[0]))
     print("loser new points: " + str(new_points[1]))
-    updatePlayer(winner, game, str(new_points[0]))
-    updatePlayer(loser, game, str(new_points[1]))
+    updatePlayer(str(winner), str(game), str(new_points[0]))
+    updatePlayer(str(loser), str(game), str(new_points[1]))
+    return None

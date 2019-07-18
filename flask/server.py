@@ -51,6 +51,9 @@ def addMatch():
     print("winner: " + req['winner'])
     print("loser: " + req['loser'])
     print("gameid: " + req['gameid'])
-    elo.eval_match(req['winner'], req['loser'], req['gameid'])
+    winnerId = db.getPlayerId(req['winner'])
+    loserId = db.getPlayerId(req['loser'])
+    elo.eval_match(winnerId, loserId, req['gameid'])
+    return getGamesTest()
 
 app.run(host= '0.0.0.0') 

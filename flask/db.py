@@ -38,11 +38,17 @@ def getPoints(gameId): # Fetching all points for a specific game
     return getData("select points.id, users.name, games.gameid , games.gamename, points.points from users, points, games where users.id = points.id and points.gameid = games.gameid and games.gameid = "+gameId+";")
 
 def getPlyrPoints(userId, gameId): # Fetch elo points for a specific user
-    tuple = getData("select points from points where id = "+userId+" and gameid = "+gameId+";")
-    return tuple[0][0]
+    tpl = getData("select points from points where id = "+userId+" and gameid = "+gameId+";")
+    print("*******\n    "+str(tpl)+"\n*******")
+    #Om ingen finns med i points  så blir det [], om den förstafinns i points blir det [(1021,)] lägg märke till kommat  
+    return tpl[0][0]
 
 def getPlayers(): # Get the users.
     return getData("select * from users;")
+
+def getPlayerId(name):
+    tup = getData("select id from users where name='"+name+"';")
+    return tup[0][0]
 
 def addPlayer(name):
     return getData("insert into users (name) values ('"+name+"');")
