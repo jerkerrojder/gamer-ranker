@@ -26,10 +26,10 @@ def eval_match(winner, loser, game): #takes winnerId LoserID and gameID
 
     if (win_elo==None):
         win_elo = START_ELO
-        updatePoints(win_elo, winner, game)
+        updatePoints(str(win_elo), str(winner), str(game))
     if (lsr_elo==None):
         lsr_elo = START_ELO
-        updatePoints(lsr_elo, loser, game)
+        updatePoints(str(lsr_elo), str(loser), str(game))
     
     new_points = calc_new(win_elo, lsr_elo)
     print("winner new points: " + str(new_points[0]))
