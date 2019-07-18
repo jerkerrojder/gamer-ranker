@@ -23,6 +23,9 @@ def eval_match(winner, loser, game): #takes winnerId LoserID and gameID
     lsr_elo = getPlyrPoints(str(loser), str(game))
     print(str(lsr_elo))
 
+    if (win_elo==None or lsr_elo==None):
+        print("Someone's first game!!!")
+
     new_points = calc_new(win_elo, lsr_elo)
     print("winner new points: " + str(new_points[0]))
     print("loser new points: " + str(new_points[1]))
