@@ -1,5 +1,6 @@
-from db import updatePlayer, getPlyrPoints
+from db import updatePoints, updatePlayer, getPlyrPoints
 
+START_ELO = 1000
 ELO_K = 70
 
 def calc_prob(elo1, elo2):
@@ -23,9 +24,13 @@ def eval_match(winner, loser, game): #takes winnerId LoserID and gameID
     lsr_elo = getPlyrPoints(str(loser), str(game))
     print(str(lsr_elo))
 
-    if (win_elo==None or lsr_elo==None):
-        print("Someone's first game!!!")
-
+    if (win_elo==None):
+        win_elo = START_ELO
+        updatePoints(win_elo, winner, game)
+    if (lsr_elo==None):
+        lsr_elo = START_ELO
+        updatePoints(lsr_elo, loser, game)
+    
     new_points = calc_new(win_elo, lsr_elo)
     print("winner new points: " + str(new_points[0]))
     print("loser new points: " + str(new_points[1]))
